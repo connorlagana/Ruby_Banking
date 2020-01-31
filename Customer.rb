@@ -12,7 +12,7 @@ class Customer
     @first_name = first_name
     @last_name = last_name
     @ssn = ssn
-    @address = address
+    @address = address.tr(" ", "_")
     @account_numbers = account_numbers
   end
   
@@ -72,7 +72,50 @@ class Customer
     file.close
   end
 
+  def update(cust_number, new_item)
+    puts "which field are you updating 'a' = address (plz dont enter anything else bc i didnt program anything else lol)"
+    field = gets.chomp
+
+    customer_number = []
+    first_name = []
+    last_name = []
+    ssn = []
+    address = []
+    account_numbers = []
+
+    file = File.open(File.dirname(__FILE__ ) + '/customer.txt', "r")
+
+    file.each_line do |line|
+      split_line = line.split(" ")
+      customer_number.append(split_line[0])
+      first_name.append(split_line[1])
+      last_name.append(split_line[2])
+      ssn.append(split_line[3])
+      address.append(split_line[4])
+      account_numbers.append(split_line[5])
+    end
+
+    index = customer_number.index(cust_number)
+
+    if field == 'a'
+      address[index] = new_item
+      p address[index]
+
+      
+    end
+    file = File.open(File.dirname(__FILE__ ) + '/customer.txt', "w")
+    for i in 0...customer_number.length()
+      
+      file.puts("#{customer_number[i]} #{first_name[i]} #{last_name[i]} #{ssn[i]} #{address[i]} #{account_numbers[i]}")
+      
+    end
+    file.close
+  end
+
 end
 
-connor = Customer.new("Rick", "James", "980-00-2340", "1 Rick James Ave", [1009, 129])
-connor.load_data
+
+connor = Customer.new("Casey", "Fudgsical", "111-11-1111", "2 Address Rd", nil)
+# connor.log_transaction
+connor.update("424100208", "420 Baked St")
+p connor

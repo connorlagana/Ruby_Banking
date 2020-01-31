@@ -3,11 +3,13 @@ class Account
   
     def initialize (customer_num, balance, account_num, account_type, account_pin)
       time_stamp = Time.now
+      inspect = time_stamp.inspect
+
       @customer_num = customer_num
       @balance = balance
       @account_num = account_num
       @account_type = account_type
-      @time_stamp = time_stamp.inspect
+      @time_stamp = inspect.tr!(" ", "_")
       @account_pin = account_pin
     end
   
@@ -67,14 +69,15 @@ class Account
   end
   mark_acct = Account.new(333, 5000, "923456", "Cheking_Acctount",987)
   john_acct = Account.new(444, 200, "967787", "Cheking_Acctount",997)
+  p john_acct
   # puts mark_acct.customer_num
   # puts mark_acct.balance
   # puts mark_acct.account_num
   #  puts mark_acct.
   # p mark_acct
-  puts mark_acct.customer_num
-  mark_acct.pin
-  mark_acct.action
-  john_acct.pin
-  john_acct.action
+  # puts mark_acct.customer_num
+  # mark_acct.pin
+  # mark_acct.action
+  # john_acct.pin
+  # john_acct.action
   
