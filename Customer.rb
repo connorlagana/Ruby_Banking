@@ -1,10 +1,14 @@
-require account.rb
+load "account.rb"
+
+# counter = 1
+
 class Customer
   attr_accessor :customer_number, :first_name, :last_name, :ssn, :address, :account_numbers
+  
 
-
-  def initialize(customer_number, first_name, last_name, ssn, address, account_numbers)
-    @customer_number = customer_number
+  def initialize(first_name, last_name, ssn, address, account_numbers)
+    random_number2 = rand(999999999)
+    @customer_number = random_number2
     @first_name = first_name
     @last_name = last_name
     @ssn = ssn
@@ -14,26 +18,36 @@ class Customer
   
   def new_account()
     puts("What type of account would you like to open? (Checking = 'C', Savings = 'S')")
-    type = gets.chomp
+    type = gets.chomp.downcase
 
     puts("How much would you like to depoist?")
     balance = gets.chomp.to_i - 3
 
+    puts("What is your pin number?")
+    pin = gets.chomp.to_i
+
     time1 = Time.now
 
-    #SOME RANDOM GENERATOR FUNCTION FOR ACCOUNT NUMBERS
+    random_number = rand(999999999)
+    
 
-    if type.downcase = "c"
-      #open checking account
+    if type == "c" or type == 's'
       
-      new_acct = Account.new(@customer_number, balance, account_num, type, time1.inspect)
-      
-    elsif typ.downcase = 's'
-      #open savings account
+      new_acct = Account.new(@customer_number, balance, random_number, type, time1.inspect, pin)
+      account_numbers.append(random_number)
+      return new_acct
     else
       puts("Please select either Checking = 'C' or Savings = 'S'")
     end
   end
 
+  def log_transaction
+    file = File.open(File.dirname(__FILE__ ) + '/customer.txt', "a")
+    file.puts("#{@customer_number} #{@first_name} #{@last_name} #{@ssn} #{@address} #{@account_numbers}")
+    file.close
+  end
+
 end
 
+connor = Customer.new("Connor", "Lagana", "420-69-1000", "1 Fuckme Ave", [5, 19])
+connor.log_transaction
