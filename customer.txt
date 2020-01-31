@@ -1,3 +1,1 @@
-first_name   last_name      customer_num    SSN     cus_address     account_num
-Casey          Harding          111        123456   Manhttan,NY     456789
-Suresh         Melvin           222        789222   Brooklyn,NY     587234
+451527826 Connor Lagana 420-69-1000 1 Fuckme Ave [5, 19]

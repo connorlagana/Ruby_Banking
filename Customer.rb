@@ -31,24 +31,23 @@ class Customer
     random_number = rand(999999999)
     
 
-    #SOME RANDOM GENERATOR FUNCTION FOR ACCOUNT NUMBERS
-
-    if type = "c"
-      #open checking account
+    if type == "c" or type == 's'
       
       new_acct = Account.new(@customer_number, balance, random_number, type, time1.inspect, pin)
-
       account_numbers.append(random_number)
-      
-    elsif type = 's'
-      #open savings account
+      return new_acct
     else
       puts("Please select either Checking = 'C' or Savings = 'S'")
     end
   end
 
+  def log_transaction
+    file = File.open(File.dirname(__FILE__ ) + '/customer.txt', "a")
+    file.puts("#{@customer_number} #{@first_name} #{@last_name} #{@ssn} #{@address} #{@account_numbers}")
+    file.close
+  end
+
 end
 
 connor = Customer.new("Connor", "Lagana", "420-69-1000", "1 Fuckme Ave", [5, 19])
-connor.new_account()
-p (connor)
+connor.log_transaction
