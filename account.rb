@@ -41,9 +41,9 @@ class Account
   
   end
   mark_acct = Account.new(333, 100, 923456, "Cheking_Acct", true, 987)
-  puts mark_acct.customer_num
-  mark_acct.pin
-  mark_acct.cases
+  # puts mark_acct.customer_num
+  # mark_acct.pin
+  # mark_acct.cases
   
   
   
