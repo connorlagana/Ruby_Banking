@@ -98,10 +98,8 @@ class Customer
     index = customer_number.index(cust_number)
 
     if field == 'a'
-      address[index] = new_item
+      address[index] = new_item.tr(" ", "_")
       p address[index]
-
-      
     end
     file = File.open(File.dirname(__FILE__ ) + '/customer.txt', "w")
     for i in 0...customer_number.length()
