@@ -1,4 +1,4 @@
-
+load 'account.rb'
 
 class Transaction
   def initialize(trans_num, trans_type, amount, time_stamp, from_acct, to_acct)
