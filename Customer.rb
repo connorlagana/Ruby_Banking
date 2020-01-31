@@ -1,4 +1,5 @@
 load "account.rb"
+require 'colorize'
 
 # counter = 1
 
@@ -73,7 +74,7 @@ class Customer
   end
 
   def update(cust_number, new_item)
-    puts "which field are you updating 'a' = address (plz dont enter anything else bc i didnt program anything else lol)"
+    puts "which field are you updating 'a' = address (plz dont enter anything else bc i didnt program anything else lol)".colorize(:color => :white, :background => :blue)
     field = gets.chomp
 
     customer_number = []
@@ -116,4 +117,5 @@ end
 connor = Customer.new("Casey", "Fudgsical", "111-11-1111", "2 Address Rd", nil)
 # connor.log_transaction
 connor.update("424100208", "420 Baked St")
-p connor
+
+String.colors 
