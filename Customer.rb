@@ -113,7 +113,7 @@ class Customer
 end
 
 
-connor = Customer.new("Casey", "Fudgsical", "111-11-1111", "2 Address Rd", nil)
+# connor = Customer.new("Casey", "Fudgsical", "111-11-1111", "2 Address Rd", nil)
 # connor.log_transaction
-connor.update("424100208", "420 Baked St")
-p connor
+# connor.update("424100208", "420 Baked St")
+#p connor
