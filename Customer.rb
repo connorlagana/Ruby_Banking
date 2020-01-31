@@ -1,53 +1,90 @@
-load "account.rb"
-
-# counter = 1
-
-class Customer
-  attr_accessor :customer_number, :first_name, :last_name, :ssn, :address, :account_numbers
+class Account
+    attr_reader :customer_num, :balance, :account_num, :account_type, :account_pin, :time_stamp
   
-
-  def initialize(first_name, last_name, ssn, address, account_numbers)
-    random_number2 = rand(999999999)
-    @customer_number = random_number2
-    @first_name = first_name
-    @last_name = last_name
-    @ssn = ssn
-    @address = address
-    @account_numbers = account_numbers
-  end
+    def initialize (customer_num, balance, account_num, account_type, account_pin)
+      time_stamp = Time.now
+      @customer_num = customer_num
+      @balance = balance
+      @account_num = account_num
+      @account_type = account_type
+      @time_stamp = time_stamp.inspect
+      @account_pin = account_pin
+    end
   
-  def new_account()
-    puts("What type of account would you like to open? (Checking = 'C', Savings = 'S')")
-    type = gets.chomp.downcase
-
-    puts("How much would you like to depoist?")
-    balance = gets.chomp.to_i - 3
-
-    puts("What is your pin number?")
-    pin = gets.chomp.to_i
-
-    time1 = Time.now
-
-    random_number = rand(999999999)
-    
-
-    if type == "c" or type == 's'
-      
-      new_acct = Account.new(@customer_number, balance, random_number, type, time1.inspect, pin)
-      account_numbers.append(random_number)
-      return new_acct
-    else
-      puts("Please select either Checking = 'C' or Savings = 'S'")
+    def pin
+      puts "Please enter your pin number"
+      pin = gets.chomp.to_i
+      if(pin == account_pin)
+        puts "Welcome!"
+        action
+      elsif(pin != account_pin)
+        puts "Your pin number is incorrect!"
+        pin
+      end
+    end
+  
+    def action
+      puts "What would you like to do? (withdraw, deposit, display, transfer)"
+      input = gets.chomp
+      case input
+      when "withdraw"
+      puts "How much do you want to withdraw?"
+      money = gets.chomp.to_i
+      if(money <= balance)
+        puts "Please take your money"
+        new_balance = balance - money
+        @balance = new_balance
+        puts "Your Remaining Balance is : #{balance}"
+      elsif (money <= balance + 100 )
+        puts "You have over draft fee : $35"
+        @balance = balance - money
+        puts "You exceed your balance by: #{balance} plus an overdraft charge for -35"
+      else(money > balance + 100)
+        puts "You don't have enough money in your account, please enter different amount"
+        money = gets.chomp.to_i
+      end
+      when "deposite"
+        puts "How much do you want to deposite?"
+        money = gets.chomp.to_i
+        new_balance = money + balance
+        @balance = new_balance
+        puts "Your new balance is : #{balance}"
+        puts "Thank you!"
+      when "display"
+        puts "#{balance}"
+      when "transfer"
+        transfer
+      else
+        puts "Error: your balance is less than 0"
+    end
+    end
+    def transfer ()
+      puts "How much do you want to transfer?"
+      input2 = gets.chomp.to_i
+      if(input2 <= balance)
+        puts"What is the account number you want to transfer to?"
+        account_num = gets.chomp.to_s
+        puts "Transfer has been completed"
+        @balance = balance - input2
+        # other_acct_balance = balance + input2
+        puts "Your Remaining Balance is : #{balance}"
+        # puts "Your second account balance is #{ other_acct_balance}"
+      else
+        puts "you don't have enough money in your account"
+        action
+      end
+  
     end
   end
-
-  def log_transaction
-    file = File.open(File.dirname(__FILE__ ) + '/customer.txt', "a")
-    file.puts("#{@customer_number} #{@first_name} #{@last_name} #{@ssn} #{@address} #{@account_numbers}")
-    file.close
-  end
-
-end
-
-connor = Customer.new("Connor", "Lagana", "420-69-1000", "1 Fuckme Ave", [5, 19])
-connor.log_transaction
+  mark_acct = Account.new(333, 400, "923456", "Cheking_Acctount",987)
+  john_acct = Account.new(444, 200, "967787", "Cheking_Acctount",997)
+  # puts mark_acct.customer_num
+  # puts mark_acct.balance
+  # puts mark_acct.account_num
+  #  puts mark_acct.
+  # p mark_acct
+  puts mark_acct.customer_num
+  # mark_acct.pin
+  john_acct.pin
+  
+  
