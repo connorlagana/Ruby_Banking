@@ -2,6 +2,7 @@ require account.rb
 class Customer
   attr_accessor :customer_number, :first_name, :last_name, :ssn, :address, :account_numbers
 
+
   def initialize(customer_number, first_name, last_name, ssn, address, account_numbers)
     @customer_number = customer_number
     @first_name = first_name
