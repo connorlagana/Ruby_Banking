@@ -41,6 +41,31 @@ class Customer
     end
   end
 
+  def load_data()
+
+
+    #empty arrays
+    customer_number = []
+    first_name = []
+    last_name = []
+    ssn = []
+    address = []
+    account_numbers = []
+
+    file = File.open(File.dirname(__FILE__ ) + '/customer.txt', "r")
+    file.each_line do |line|
+      split_line = line.split(" ")
+      customer_number.append(split_line[0])
+      first_name.append(split_line[1])
+      last_name.append(split_line[2])
+      ssn.append(split_line[3])
+      address.append(split_line[4])
+      account_numbers.append(split_line[5])
+    end
+
+    puts account_numbers
+  end
+
   def log_transaction
     file = File.open(File.dirname(__FILE__ ) + '/customer.txt', "a")
     file.puts("#{@customer_number} #{@first_name} #{@last_name} #{@ssn} #{@address} #{@account_numbers}")
@@ -49,5 +74,5 @@ class Customer
 
 end
 
-connor = Customer.new("Connor", "Lagana", "420-69-1000", "1 Fuckme Ave", [5, 19])
-connor.log_transaction
+connor = Customer.new("Rick", "James", "980-00-2340", "1 Rick James Ave", [1009, 129])
+connor.load_data
