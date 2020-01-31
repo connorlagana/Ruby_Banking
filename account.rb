@@ -1,4 +1,5 @@
 class Account
+
   attr_reader :customer_num, :balance, :account_num, :account_type, :account_pin, :time_stamp
 
   def initialize (customer_num, balance, account_num, account_type, account_pin)
@@ -87,6 +88,7 @@ def load_data
     cust_nums << line.split(" ")[4]
     time_stamps << line.split(" ")[5]
   end
+
 
 end
 
