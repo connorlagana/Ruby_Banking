@@ -1,48 +1,64 @@
 class Account
+    attr_reader :customer_num, :balance, :account_num, :account_type, :account_pin, :time_stamp
+  
+    def initialize (customer_num, balance, account_num, account_type, account_pin)
+      time_stamp = Time.now
+      @customer_num = customer_num
+      @balance = balance
+      @account_num = account_num
+      @account_type = account_type
+      @time_stamp = time_stamp.inspect
+      @account_pin = account_pin
+    end
+  
+    def pin
+      puts "Please enter your pin number"
+      pin = gets.chomp.to_i
+      if(pin == account_pin)
+        puts "Welcome!"
+        action
+      elsif(pin != account_pin)
+        puts "Your pin number is incorrect!"
+        pin
+      end
+    end
+  
+    def action
+      puts "What would you like to do? (withdraw, deposit, display, transfer)"
+      input = gets.chomp
+      case input
+      when "withdraw"
 
-  attr_reader :customer_num, :balance, :account_num, :account_type, :account_pin, :time_stamp
-
-  def initialize (customer_num, balance, account_num, account_type, account_pin)
-    time_stamp = Time.now
-    @customer_num = customer_num
-    @balance = balance
-    @account_num = account_num
-    @account_type = account_type
-    @time_stamp = time_stamp.inspect
-    @account_pin = account_pin
-  end
-
-  def pin
-    puts "Please enter your pin number"
-    pin = gets.chomp.to_i
-  end
-
-  def action
-    puts "What would you like to do? (withdraw, deposit, display, transfer)"
-    input = gets.chomp
-    case input
-    when "withdraw"
       puts "How much do you want to withdraw?"
       money = gets.chomp.to_i
       if (money <= balance)
         puts "Please take your money"
-        @balance = balance - money
+        new_balance = balance - money
+        @balance = new_balance
         puts "Your Remaining Balance is : #{balance}"
-      else
+      elsif (money <= balance + 100 )
+        puts "You have over draft fee : $35"
+        @balance = balance - money
+        puts "You exceed your balance by: #{balance} plus an overdraft charge for -35"
+      else(money > balance + 100)
         puts "You don't have enough money in your account, please enter different amount"
         money = gets.chomp.to_i
       end
-    when "deposite"
-      puts "How much do you want to deposite?"
-      money = gets.chomp.to_i
-      @balance = money + balance
-      puts "#{balance}"
-    when "display"
-      puts "#{balance}"
-    when "transfer"
-      transfer
-    else
-      puts "Error: your balance is less than 0"
+      when "deposite"
+        puts "How much do you want to deposite?"
+        money = gets.chomp.to_i
+        new_balance = money + balance
+        @balance = new_balance
+        puts "Your new balance is : #{balance}"
+        puts "Thank you!"
+      when "display"
+        puts "#{balance}"
+      when "transfer"
+        transfer
+      else
+        puts "Error: your balance is less than 0"
+    end
+
     end
   end
 
@@ -61,8 +77,9 @@ class Account
       puts "you don't have enough money in your account"
       action
     end
+  
+  
 
-  end
 
 end
 
@@ -94,17 +111,16 @@ end
 
 class Checking < Account
 
-end
-mark_acct = Account.new(333, 5000, "923456", "Cheking_Acctount", 987)
-john_acct = Account.new(444, 200, "967787", "Cheking_Acctount", 997)
-# puts mark_acct.customer_num
-# puts mark_acct.balance
-# puts mark_acct.account_num
-#  puts mark_acct.
-# p mark_acct
-puts mark_acct.customer_num
-mark_acct.pin
-mark_acct.action
-john_acct.pin
-john_acct.action
+ end
+
+  mark_acct = Account.new(333, 400, "923456", "Cheking_Acctount",987)
+  john_acct = Account.new(444, 200, "967787", "Cheking_Acctount",997)
+  # puts mark_acct.customer_num
+  # puts mark_acct.balance
+  # puts mark_acct.account_num
+  #  puts mark_acct.
+  # p mark_acct
+  puts mark_acct.customer_num
+  # mark_acct.pin
+  john_acct.pin
 
