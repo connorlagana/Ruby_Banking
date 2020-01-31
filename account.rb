@@ -46,6 +46,7 @@ class Account
   class Checking < Account
   
   end
+
   mark_acct = Account.new(333, 5000, 923456, "Cheking_Acct",345,987)
   # puts mark_acct.customer_num
   # puts mark_acct.balance
@@ -54,5 +55,6 @@ class Account
   puts mark_acct.customer_num
   mark_acct.pin
   mark_acct.action
+ 
   
   
