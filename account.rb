@@ -28,9 +28,10 @@ class Account
       input = gets.chomp
       case input
       when "withdraw"
+
       puts "How much do you want to withdraw?"
       money = gets.chomp.to_i
-      if(money <= balance)
+      if (money <= balance)
         puts "Please take your money"
         new_balance = balance - money
         @balance = new_balance
@@ -57,25 +58,61 @@ class Account
       else
         puts "Error: your balance is less than 0"
     end
-    end
-    def transfer ()
-      puts "How much do you want to transfer?"
-      input2 = gets.chomp.to_i
-      if(input2 <= balance)
-        puts"What is the account number you want to transfer to?"
-        account_num = gets.chomp.to_s
-        puts "Transfer has been completed"
-        @balance = balance - input2
-        # other_acct_balance = balance + input2
-        puts "Your Remaining Balance is : #{balance}"
-        # puts "Your second account balance is #{ other_acct_balance}"
-      else
-        puts "you don't have enough money in your account"
-        action
-      end
-  
+
     end
   end
+
+  def transfer ()
+    puts "How much do you want to transfer?"
+    input2 = gets.chomp.to_i
+    if (input2 <= balance)
+      puts "What is the account number you want to transfer to?"
+      account_num = gets.chomp.to_s
+      puts "Transfer has been completed"
+      @balance = balance - input2
+      # other_acct_balance = balance + input2
+      puts "Your Remaining Balance is : #{balance}"
+      # puts "Your second account balance is #{ other_acct_balance}"
+    else
+      puts "you don't have enough money in your account"
+      action
+    end
+  
+  
+
+
+end
+
+def save_account
+  file = File.open(File.dirname(__FILE__) + '/accounts.txt', "a")
+  file.puts("#{@account_num} #{@balance} #{@account_type} #{@account_pin} #{@customer_num} #{@time_stamp}")
+  file.close
+end
+
+def load_data
+  acct_numbers = []
+  balances = []
+  acct_types = []
+  acct_pins = []
+  cust_nums = []
+  time_stamps = []
+  file = File.open(File.dirname(__FILE__) + '/accounts.txt', "r")
+  file.each_line do |line|
+    acct_numbers << line.split(" ")[0]
+    balances << line.split(" ")[1]
+    acct_types << line.split(" ")[2]
+    acct_pins << line.split(" ")[3]
+    cust_nums << line.split(" ")[4]
+    time_stamps << line.split(" ")[5]
+  end
+
+
+end
+
+class Checking < Account
+
+ end
+
   mark_acct = Account.new(333, 400, "923456", "Cheking_Acctount",987)
   john_acct = Account.new(444, 200, "967787", "Cheking_Acctount",997)
   # puts mark_acct.customer_num
@@ -86,5 +123,4 @@ class Account
   puts mark_acct.customer_num
   # mark_acct.pin
   john_acct.pin
-  
-  
+

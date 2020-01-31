@@ -1,11 +1,14 @@
 load 'account.rb'
 
+
 class Transaction
-  def initialize(trans_num, trans_type, amount, time_stamp, from_acct, to_acct)
+
+  def initialize(trans_num, trans_type, amount, from_acct, to_acct)
+    time = Time.new
     @trans_num = trans_num
     @trans_type = trans_type
     @amount = amount
-    @time_stamp = time_stamp
+    @time_stamp = time.inspect
     @from_acct = from_acct
     @to_acct = to_acct
   end
@@ -27,6 +30,6 @@ class Transaction
 
 end
 
-transaction = Transaction.new(1, 'deposit', 500, 'April 1, 2019', 'n/a', '756468')
+transaction = Transaction.new(1, 'deposit', 500, 'n/a', '756468')
 transaction.show_details
 transaction.log_transaction
