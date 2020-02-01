@@ -14,7 +14,7 @@ def get_pin
   end
 end
 
-def run_program
+def new_customer
   puts("Whats your first name bro?")
   first = gets.chomp.downcase
   puts("Whats your last name bro?")
@@ -29,21 +29,53 @@ def run_program
   type = gets.chomp.downcase
   puts("How much would you like to deposit?")
   balance = gets.chomp.to_i - 3
-  puts("Yo we gotta take $3 out of that account because we're Wells Fargo and we commit white collar crimes so your balance is #{balance}")
+  puts("Yo we gotta take $3 out of that account because we're Wells Fargo and we commit white collar crimes so your balance is $#{balance}")
   
   puts("Create a 4 digit pin")
-  get_pin
+  pin = get_pin
+  pin
+
+  random_number2 = rand(999999999)
   
-
-  customer = Customer.new(first, last, ssn, address, [])
+  customer = Customer.new(random_number2, first, last, ssn, address, [], pin)
   customer.log_transaction
+  
+end
 
+def created_account_intro
   puts "You've officially created an account at the worlds shittiest bank! Congrats! 🎊🥳🎉"
   puts "Is there anything else we could do for you today?"
   puts "D: Deposit"
   puts "W: Withdrawl"
   puts "B: Check Balance"
-  puts "P: Change Pin"
+  puts "U: Update information"
+end
+
+def created_account
+  enter = gets.chomp
+  enter.downcase
+  if enter == "d"
+
+  elsif enter == "w"
+
+  elsif enter == "b"
+
+  elsif enter == "u"
+    customer = Customer.new
+    customer.update()
+  else
+    puts "bro...#{enter} isn't a command. follow the rules plz"
+  end
+end
+
+def run_program
+
+  new_customer
+  
+  created_account_intro
+
+  created_account
+  
 end
 
 run_program
