@@ -40,10 +40,12 @@ def new_customer
   customer = Customer.new(random_number2, first, last, ssn, address, [], pin)
   customer.log_transaction
   
+  return customer
 end
 
-def created_account_intro
+def created_account_intro(acct_num)
   puts "You've officially created an account at the worlds shittiest bank! Congrats! 🎊🥳🎉"
+  puts "Your account number is #{acct_num}"
   puts "Is there anything else we could do for you today?"
   puts "D: Deposit"
   puts "W: Withdrawl"
@@ -51,7 +53,7 @@ def created_account_intro
   puts "U: Update information"
 end
 
-def created_account
+def created_account(customer)
   enter = gets.chomp
   enter.downcase
   if enter == "d"
@@ -61,8 +63,7 @@ def created_account
   elsif enter == "b"
 
   elsif enter == "u"
-    customer = Customer.new
-    customer.update()
+    customer.update(customer)
   else
     puts "bro...#{enter} isn't a command. follow the rules plz"
   end
@@ -70,11 +71,11 @@ end
 
 def run_program
 
-  new_customer
+  customer = new_customer
   
-  created_account_intro
+  created_account_intro(customer.customer_number)
 
-  created_account
+  created_account(customer)
   
 end
 

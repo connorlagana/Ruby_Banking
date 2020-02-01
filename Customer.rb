@@ -23,7 +23,7 @@ class Customer
     file.close
   end
 
-  def update(cust_number, new_item)
+  def update(customer)
     puts "which field are you updating 'a' = address, 'f' = first name, 'l' = last name".colorize(:color => :white, :background => :blue)
     field = gets.chomp
 
@@ -46,13 +46,18 @@ class Customer
       account_numbers.append(split_line[5])
     end
 
-    index = customer_number.index(cust_number)
+    index = customer_number.index(customer.customer_number.to_s)
 
     if field == 'a'
+      puts "What would you like your new address to be?"
+      new_item = gets.chomp
       address[index] = new_item.tr(" ", "_")
     elsif field == 'f'
-      first_name[index] = new_item.tr(" ", "_")
+      puts "What would you like your new first name to be?"
+      new_item = gets.chomp
     elsif field == 'l'
+      puts "What would you like your new last name to be?"
+      new_item = gets.chomp
       last_name[index] = new_item.tr(" ", "_")
     end
 
@@ -63,6 +68,8 @@ class Customer
       
     end
     file.close
+
+    puts "You've updated your information!"
   end
 
 end
