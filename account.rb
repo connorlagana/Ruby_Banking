@@ -148,17 +148,17 @@ end
 
 
 
-  mark_acct = Account.new(333, 400, "923456", "Cheking_Acctount", 987)
-  john_acct = Account.new(444, 200, "967787", "Cheking_Acctount", 997)
+  # mark_acct = Account.new(333, 400, "923456", "Cheking_Acctount", 987)
+  # john_acct = Account.new(444, 200, "967787", "Cheking_Acctount", 997)
   # puts mark_acct.customer_num
   # puts mark_acct.balance
   # puts mark_acct.account_num
   #  puts mark_acct.
   # p mark_acct
   #
-  mark_acct.save_account
-  john_acct.save_account
-  puts mark_acct.customer_num
+  # mark_acct.save_account
+  # john_acct.save_account
+  # puts mark_acct.customer_num
   # mark_acct.pin
   #john_acct.pin
 

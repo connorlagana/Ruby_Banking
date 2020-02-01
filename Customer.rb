@@ -1,4 +1,4 @@
-load "account.rb"
+load "Account.rb"
 require 'colorize'
 
 # counter = 1
@@ -8,7 +8,9 @@ class Customer
   
 
   def initialize(first_name, last_name, ssn, address, account_numbers)
+    
     random_number2 = rand(999999999)
+
     @customer_number = random_number2
     @first_name = first_name
     @last_name = last_name
@@ -18,11 +20,24 @@ class Customer
   end
   
   def new_account()
+    puts("Whats your first name bro?")
+    first_name = gets.chomp.downcase
+
+    puts("Whats your last name bro?")
+    last_name = gets.chomp.downcase
+
+    puts("BRO! #{first_name} #{last_name} is such a cool name").colorize(:color => :white, :background => :red)
+
+    puts("Whats your last name bro?")
+    last_name = gets.chomp.downcase
+
     puts("What type of account would you like to open? (Checking = 'C', Savings = 'S')")
     type = gets.chomp.downcase
 
     puts("How much would you like to depoist?")
     balance = gets.chomp.to_i - 3
+
+    puts("yo we gotta take $3 out of that account because we're Wells Fargo and we fucking suck so your balance is #{balance}").colorize(:color => :white, :background => :blue)
 
     puts("What is your pin number?")
     pin = gets.chomp.to_i
@@ -74,7 +89,7 @@ class Customer
   end
 
   def update(cust_number, new_item)
-    puts "which field are you updating 'a' = address (plz dont enter anything else bc i didnt program anything else lol)".colorize(:color => :white, :background => :blue)
+    puts "which field are you updating 'a' = address, 'f' = first name, 'l' = last name".colorize(:color => :white, :background => :blue)
     field = gets.chomp
 
     customer_number = []
@@ -100,8 +115,12 @@ class Customer
 
     if field == 'a'
       address[index] = new_item.tr(" ", "_")
-      p address[index]
+    elsif field == 'f'
+      first_name[index] = new_item.tr(" ", "_")
+    elsif field == 'l'
+      last_name[index] = new_item.tr(" ", "_")
     end
+
     file = File.open(File.dirname(__FILE__ ) + '/customer.txt', "w")
     for i in 0...customer_number.length()
       
