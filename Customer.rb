@@ -33,6 +33,7 @@ class Customer
     ssn = []
     address = []
     account_numbers = []
+    pins = []
 
     file = File.open(File.dirname(__FILE__ ) + '/customer.txt', "r")
 
@@ -44,6 +45,7 @@ class Customer
       ssn.append(split_line[3])
       address.append(split_line[4])
       account_numbers.append(split_line[5])
+      pins.append(split_line[6])
     end
 
     index = customer_number.index(customer.customer_number.to_s)
