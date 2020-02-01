@@ -66,7 +66,7 @@ class Customer
     file = File.open(File.dirname(__FILE__ ) + '/customer.txt', "w")
     for i in 0...customer_number.length()
       
-      file.puts("#{customer_number[i]} #{first_name[i]} #{last_name[i]} #{ssn[i]} #{address[i]} #{account_numbers[i]}")
+      file.puts("#{customer_number[i]} #{first_name[i]} #{last_name[i]} #{ssn[i]} #{address[i]} #{account_numbers[i]} #{pins[i]}")
       
     end
     file.close
@@ -75,9 +75,3 @@ class Customer
   end
 
 end
-
-
-# connor = Customer.new("Casey", "Fudgsical", "111-11-1111", "2 Address Rd", nil)
-# connor.log_transaction
-# connor.update("424100208", "420 Baked St")
-#p connor

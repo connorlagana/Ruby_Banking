@@ -39,13 +39,13 @@ def new_customer
   
   customer = Customer.new(random_number2, first, last, ssn, address, [], pin)
   customer.log_transaction
+  puts "You've officially created an account at the worlds shittiest bank! Congrats! 🎊🥳🎉"
+  puts "Your account number is #{random_number2}"
   
   return customer
 end
 
-def created_account_intro(acct_num)
-  puts "You've officially created an account at the worlds shittiest bank! Congrats! 🎊🥳🎉"
-  puts "Your account number is #{acct_num}"
+def created_account_intro()
   puts "Is there anything else we could do for you today?"
   puts "D: Deposit"
   puts "W: Withdrawl"
@@ -67,13 +67,16 @@ def created_account(customer)
   else
     puts "bro...#{enter} isn't a command. follow the rules plz"
   end
+
+  created_account_intro
+  created_account(customer)
 end
 
 def run_program
 
   customer = new_customer
   
-  created_account_intro(customer.customer_number)
+  created_account_intro()
 
   created_account(customer)
   
