@@ -33,3 +33,4 @@ end
 transaction = Transaction.new(1, 'deposit', 500, 'n/a', '756468')
 transaction.show_details
 transaction.log_transaction
+
