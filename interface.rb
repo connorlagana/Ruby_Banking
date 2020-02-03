@@ -15,20 +15,26 @@ def get_pin
 end
 
 def new_customer
-  puts("Whats your first name bro?")
+  puts("Hey! Welcome to Wells Fargo!")
+  puts("Whats your first name?")
   first = gets.chomp.downcase
-  puts("Whats your last name bro?")
+  
+  puts("Whats your last name?")
   last = gets.chomp.downcase
-  puts("BRO! #{first} #{last} is such a cool name")
+
+  puts("DUDE! #{first} #{last} is such a cool name")
   puts "Enter your social security number. We promise we won't sell it on the black market 😉"
   ssn = gets.chomp
-  puts 'Enter your address so we can send you your debit card or whatever'
+
+  puts 'Enter your address so we can send you your debit card or whatever.'
   address = gets.chomp
 
   puts("What type of account would you like to open? (Checking = 'C', Savings = 'S')")
   type = gets.chomp.downcase
+
   puts("How much would you like to deposit?")
   balance = gets.chomp.to_i - 3
+
   puts("Yo we gotta take $3 out of that account because we're Wells Fargo and we commit white collar crimes so your balance is $#{balance}")
   
   puts("Create a 4 digit pin")

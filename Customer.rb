@@ -57,6 +57,7 @@ class Customer
     elsif field == 'f'
       puts "What would you like your new first name to be?"
       new_item = gets.chomp
+      first_name[index] = new_item.tr(" ", "_")
     elsif field == 'l'
       puts "What would you like your new last name to be?"
       new_item = gets.chomp
